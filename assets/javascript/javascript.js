@@ -13,7 +13,10 @@ $(document).ready(function() {
         method: "GET"
         })
         .then(function(response) {
-        var results = response.data;
+            console.log(response);
+
+            
+            var results = response.data;
 
             for (var i = 0; i < results.length; i++) {
                 var gifDiv = $("<div>");
@@ -29,4 +32,34 @@ $(document).ready(function() {
             }
         });
     });
+
+
+    // <img src="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif" data-still="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif" data-animate="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200.gif" data-state="still" class="gif"></img>
+    
+    
+    $(".gif").on("click", function() {
+
+        if(event.srcElement.dataset.state == "still"){
+          // console.log(this.dataset.state);
+          // console.log(this.dataset.animate);
+          this.dataset.state = "animate";
+          this.src=this.dataset.animate;
+        }
+        else{
+          this.dataset.state = "still";
+          this.src=this.dataset.still;
+        }
+  
+        // data[""0""].images.fixed_height.url
+        // data[""0""].images.fixed_height_still.url
+
+
+
+    });
+
+
+
+
+
+
 });
