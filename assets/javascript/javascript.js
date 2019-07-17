@@ -13,17 +13,6 @@ function renderButtons() { //Function to render buttons  buttons
     }
 };
 
-
-// $("#add-button").on("click", function(event) { // Function to add new buttons (Not Working)
-//     console.log("addbutton");
-//     event.preventDefault();
-//     var cat = $("#add-button").val().trim();
-//     console.log(cat);
-//     cats.push(cat);
-//     renderButtons();
-// });
-
-
 $(document).ready(function() { // This listens for a button click and will display images from giphy
 
     $("#add-button").on("click", function(event) { // Function to add new buttons (Not Working)
@@ -107,3 +96,4 @@ $(document).ready(function() { // This listens for a button click and will displ
 
 });
 
+movie-input
