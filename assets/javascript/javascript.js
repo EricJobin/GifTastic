@@ -43,12 +43,16 @@ $("#add-button").on("click", function(event) {
 
 
 $(document).ready(function() { // This listens for a button click and will display images from giphy
-    $("body").on("click", function() {
-        console.log("click1");
+
+    $(document).on("click", ".xbuttons, .xgif, img", function() {
+        console.log("click1", $(this));
         console.log(event);
         
         var person = event.srcElement.dataset.person;
+
         console.log("person: "+person)
+
+        // debugger
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +person + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
 
         if(person != undefined){
@@ -87,12 +91,12 @@ $(document).ready(function() { // This listens for a button click and will displ
 
     });
 
-});
+// });
 
 var easy
-$(document).ready(function(){ //This function listens for clicks on gifs and animates them, in theory
+// $(document).ready(function(){ //This function listens for clicks on gifs and animates them, in theory
     
-    $("body").on("click", function() {
+    $("body").on("click", ".xbuttons", function() {
     
         easy = event;
 
@@ -112,6 +116,8 @@ $(document).ready(function(){ //This function listens for clicks on gifs and ani
         //     // This does not work, selectedImage = keanu9, and while keanu9.dataset exists, selectedImage.dataset is undefined
 
             var selectedImage=event.path[0].id;
+
+            console.log(selectedImage)
             $(`#${selectedImage}`).attr("src", event.path[0].dataset.animate);
             $(`#${selectedImage}`).attr("data-state", "animate");
         //     // ok, this works, but only for keanu, not keanu reeves, why are spaces in ids fucking me? I'll deal with it later
@@ -129,7 +135,10 @@ $(document).ready(function(){ //This function listens for clicks on gifs and ani
         else{    //Error: Syntax error, unrecognized expression: # ; somewhere in these 6 lines
             console.log("in else statement"); // This line ok
             // var selectedImage=event.path[0].id; //So this line must be bad
-            // selectedImage=event.path[0].id; // still hate without the var
+            selectedImage=event.path[0].id; // still hate without the var
+            console.log(event.path[0].id);
+            selectedImage=event.path[0].id;
+            
             
             // $(`#${selectedImage}`).attr("src", event.path[0].dataset.still); // This line ok
             // $(`#${selectedImage}`).attr("data-state", "still"); // This line ok
@@ -151,9 +160,10 @@ $(document).ready(function(){ //This function listens for clicks on gifs and ani
 
 
     })
+    renderButtons()
 
 });
 
 
 
-renderButtons()
+// renderButtons()
