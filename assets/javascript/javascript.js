@@ -14,23 +14,37 @@ function renderButtons() { //Function to render buttons  buttons
 };
 
 
-$("#add-button").on("click", function(event) { // Function to add new buttons (Not Working)
-    console.log("addbutton");
-    event.preventDefault();
-    var cat = $("#add-button").val().trim();
-    console.log(cat);
-    cats.push(cat);
-    renderButtons();
-});
+// $("#add-button").on("click", function(event) { // Function to add new buttons (Not Working)
+//     console.log("addbutton");
+//     event.preventDefault();
+//     var cat = $("#add-button").val().trim();
+//     console.log(cat);
+//     cats.push(cat);
+//     renderButtons();
+// });
 
 
 $(document).ready(function() { // This listens for a button click and will display images from giphy
 
-    $(document).on("click", ".xbuttons, .xgif, img", function() {
+    $("#add-button").on("click", function(event) { // Function to add new buttons (Not Working)
+        console.log("Go! Clicked");
+        console.log(event);
+        event.preventDefault();
+
+        var cat = $("#movie-input").val().trim();
+        console.log(cat);
+        cats.push(cat);
+        renderButtons();
+    });
+    
+    $(document).on("click", ".xbuttons, img", function() {
+
+        
         
         var person = event.srcElement.dataset.person;
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +person + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
 
+        // Calls for info, displays gifs in browser
         if(person != undefined){
 
             $.ajax({
@@ -52,35 +66,43 @@ $(document).ready(function() { // This listens for a button click and will displ
                         data-animate="${results[i].images.fixed_height.url}" 
                     id="${person}${i}">`
 
-                    gifDiv.prepend(p);
-                    gifDiv.prepend(personImage);
+                    gifDiv.prepend(p); //Rating
+                    gifDiv.prepend(personImage); //Image
 
                     $("#gifs-appear-here").prepend(gifDiv);
-
                 }
             });
         }
+        // End of this Function
 
+
+        // Function to toggle gif on/off
         var selectedImage=event.path[0].id;
 
         if(event.path[0].dataset.state == "still"){
-            // console.log("in if statement");
-            // console.log("if statement: "+selectedImage)
             $(`#${selectedImage}`).attr("src", event.path[0].dataset.animate);
             $(`#${selectedImage}`).attr("data-state", "animate");
         //     // ok, this works, but only for keanu, not keanu reeves, why are spaces in ids fucking me? I'll deal with it later
         //     // mabe spice it at " " and add all elements of array together for id name
         }
-
         else if (event.path[0].dataset.state == "animate"){ 
-            
             $(`#${event.path[0].id}`).attr("src", event.path[0].dataset.still);
             $(`#${event.path[0].id}`).attr("data-state", "still");
-            
         }
+        // End of this Function
+
+       
 
 
-    })
+
+    }) // End of $(document).on("click", ".xbuttons, .xgif, img", function()
+
+
+
+
+
+
+
     renderButtons()
 
 });
