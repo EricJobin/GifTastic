@@ -1,7 +1,7 @@
 // API Homework - Giphy
 
 
-var cats = ["Lion","Tiger","Puma","Cheetah" ];
+var cats = ["Kermit the Frog","Fozzie Bear","Miss Piggy","Rizzo the Rat" ];
 
 function renderButtons() { //Function to render buttons  buttons
     $("#buttons").empty();

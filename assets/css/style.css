@@ -1,6 +1,8 @@
 /* Giphy Homework Project CSS */
 
-
-/* #buttons{
-    border: black 1px solid;
-} */
+button,
+div,
+form,
+input {
+  margin: 10px;
+}
