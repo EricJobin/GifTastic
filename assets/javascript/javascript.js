@@ -43,13 +43,9 @@ function convertString(inputString){
 
 $(document).ready(function() { // This listens for a button click and will display images from giphy
 
-    $("#add-button").on("click", function(event) { // Function to add new buttons (Not Working)
-        // console.log("Go! Clicked");
-        // console.log(event);
+    $("#add-button").on("click", function(event) { // Function to add new buttons
         event.preventDefault();
-
         var cat = $("#movie-input").val().trim();
-        // console.log(cat);
         cats.push(cat);
         renderButtons();
     });
@@ -78,7 +74,7 @@ $(document).ready(function() { // This listens for a button click and will displ
                         data-state="still" 
                         data-still="${results[i].images.fixed_height_still.url}" 
                         data-animate="${results[i].images.fixed_height.url}" 
-                        id="${personID}${i}">`// change this
+                        id="${personID}${i}">`
 
                     gifDiv.prepend(p); //Rating
                     gifDiv.prepend(personImage); //Image
@@ -96,8 +92,6 @@ $(document).ready(function() { // This listens for a button click and will displ
         if(event.path[0].dataset.state == "still"){
             $(`#${selectedImage}`).attr("src", event.path[0].dataset.animate);
             $(`#${selectedImage}`).attr("data-state", "animate");
-        //     // ok, this works, but only for keanu, not keanu reeves, why are spaces in ids fucking me? I'll deal with it later
-        //     // mabe spice it at " " and add all elements of array together for id name
         }
         else if (event.path[0].dataset.state == "animate"){ 
             $(`#${event.path[0].id}`).attr("src", event.path[0].dataset.still);
